@@ -1,0 +1,16 @@
+header{
+    background-color: #232323;
+    color:white;
+    display:flex;
+    padding: 5px 0px 5px 0;
+}
+
+.menu_item {
+    padding:5px 10px 5px 10px;
+    vertical-align: middle;
+}
+
+header img {
+    width:auto;
+    height:25px;
+}
