@@ -1,16 +1,16 @@
 .sideItems {
-    font-size: 18px;
-    color:#bdbdbd;
-    padding:10px;
-    border-bottom:1px solid #bdbdbd;
+  font-size: 18px;
+  color: #bdbdbd;
+  padding: 10px;
+  border-bottom: 1px solid #bdbdbd;
 }
 
 .sideItems a {
-    color:inherit;
-    text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
 .sideItems span {
-    margin-right:10px;
-    color: white;
+  margin-right: 12px;
+  color: white;
 }
