@@ -21,7 +21,7 @@ class Header extends React.Component {
                         onClick={()=> this.setState({showNav:true})}
                     />
                 </span>
-                <img src="/images/nba_logo.png" alt="nba_logo"/>
+                <img src={require("../../images/nba_logo.png")} alt="nba_logo"/>
                 
             </header>
         )

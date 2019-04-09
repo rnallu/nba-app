@@ -16,15 +16,6 @@ class SimpleSlider extends React.Component {
                 })
             });
     }
-     sliderItems =()=>{ this.state.items.map((item,i)=>{
-        return (
-             <div key={i}>
-                <img src={require( process.env.PUBLIC_URL + `/images/articles/1.jpeg`)} alt="news-img" height="580px"/>
-                {console.log(item.image)}
-             </div>
-         )
-        });
-    }
     
     render() {
         
@@ -36,10 +27,12 @@ class SimpleSlider extends React.Component {
             slidesToShow:1,
             slidestoScroll:1
         };
+        
         return (
             <Slider {...settings}>         
-                {/* <img src={ process.env.PUBLIC_URL + `/images/articles/1.jpeg`} alt="news-img" height="580px"/> */}
-                {this.sliderItems()}
+                {this.state.items.map((item,i)=> <div key={i}>
+                <img src={require(`../../../images/articles/${item.image}`)} alt="" width="100%" height="580px"/>
+                </div>)}
             </Slider>
         )
     }
