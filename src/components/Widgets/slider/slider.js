@@ -2,6 +2,7 @@ import React from 'react';
 import Slider from 'react-slick';
 import axios from 'axios';
 
+import './slider.css';
 
 class SimpleSlider extends React.Component {
     state = {
@@ -19,7 +20,7 @@ class SimpleSlider extends React.Component {
     
     render() {
         
-        var settings = {
+        const settings = {
             dots:true,
             arrows:false,
             infinite:true,
@@ -30,8 +31,9 @@ class SimpleSlider extends React.Component {
         
         return (
             <Slider {...settings}>         
-                {this.state.items.map((item,i)=> <div key={i}>
+                {this.state.items.map((item,i)=> <div key={i} className="container">
                 <img src={require(`../../../images/articles/${item.image}`)} alt="" width="100%" height="580px"/>
+                <div className="imgTitle">{item.title}</div>
                 </div>)}
             </Slider>
         )
