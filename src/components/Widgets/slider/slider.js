@@ -1,6 +1,9 @@
 import React from 'react';
 import Slider from 'react-slick';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
+
+import {URL} from '../../../config';
 
 import './slider.css';
 
@@ -10,7 +13,7 @@ class SimpleSlider extends React.Component {
     }
     
     componentWillMount(){
-        axios.get('http://localhost:3004/articles?_start=0&_end=3')
+        axios.get(`${URL}/articles?_start=0&_end=3`)
             .then((response)=>{
                 this.setState({
                     items:response.data
@@ -33,7 +36,7 @@ class SimpleSlider extends React.Component {
             <Slider {...settings}>         
                 {this.state.items.map((item,i)=> <div key={i} className="container">
                 <img src={require(`../../../images/articles/${item.image}`)} alt="" width="100%" height="580px"/>
-                <div className="imgTitle">{item.title}</div>
+                <div className="imgTitle"><Link to={`/articles/${item.id}`}>{item.title}</Link></div>
                 </div>)}
             </Slider>
         )

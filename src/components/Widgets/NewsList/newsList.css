@@ -1,0 +1,22 @@
+.newsList_item {
+    border-bottom: 1px solid grey;
+    padding:5px 8px 8px 5px;
+    background-color: white;
+}
+
+.newsList_item h2 {
+    font-size: 15px;
+}
+
+.newsList_item a {
+    text-decoration: none;
+    color:#232323;
+}
+
+.loadmore {
+    padding: 5px 0 5px 0;
+    text-align: center;
+    background-color: blue;
+    color: white;
+    font-size: 18px;
+}
