@@ -19,4 +19,16 @@
     background-color: blue;
     color: white;
     font-size: 18px;
+    cursor: pointer;
+}
+
+.list-enter {
+    opacity:0;
+    transform: translateX(-100%);
+    transition: all 1s ease-in;
+}
+
+.list-enter-active {
+    opacity: 1;
+    transform: translateX(0%);
 }
