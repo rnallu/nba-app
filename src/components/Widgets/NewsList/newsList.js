@@ -5,20 +5,32 @@ import {CSSTransition, TransitionGroup} from 'react-transition-group';
 
 import {URL} from '../../../config';
 import './newsList.css';
+import NewsTeam from '../NewsTeam/newsTeam';
 
 class NewsList extends React.Component {
 
         state = {
             items:[],
+            teams:[],
             start:3,
             end:6
         }
     
     componentDidMount(){
-        this.request(3,6);
+        this.request(this.state.start,this.state.end);
     }
 
     request = (start,end) => {
+
+        if(this.state.teams.length<1){
+            axios.get(`${URL}/teams`)
+        .then((response)=>{
+            this.setState({
+                teams:response.data
+            })
+        })
+        }
+        
         axios.get(`${URL}/articles?_start=${start}&_end=${end}`)
             .then((response)=>{
                 this.setState({
@@ -35,6 +47,7 @@ class NewsList extends React.Component {
                 classNames="list"
             >
                 <div className="newsList_item">
+                    <NewsTeam teams={this.state.teams} team={item.team} date={item.date}/>
                   <Link to={`/articles/${item.id}`}>  <h2>{item.title}</h2> </Link></div>
             </CSSTransition>
              )

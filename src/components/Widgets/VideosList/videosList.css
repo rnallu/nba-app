@@ -1,0 +1,43 @@
+.video_heading {
+    font-size: 18px;
+    text-align: center;
+}
+
+.video_item a {
+    color:#232323;
+    text-decoration: none;
+    font-size: 10px;
+}
+
+.video_item {
+    border-bottom:1px solid #232323;
+    padding-top:10px;
+}
+
+.load_videos {
+    padding: 5px 0 5px 0;
+    text-align: center;
+    background-color: blue;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+.videoList_container {
+    display: flex;
+    padding:10px 5px 10px 5px;
+}
+
+.image_titleDiv {
+    margin-left: 5px;
+    position: relative;    
+}
+
+.video_titleDiv {
+    margin-left:20px;
+}
+
+.image_play {
+    position: absolute;
+    top:20%;
+    left:20%;
+}
