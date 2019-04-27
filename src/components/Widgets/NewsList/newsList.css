@@ -2,6 +2,8 @@
     border-bottom: 1px solid grey;
     padding:5px 8px 8px 5px;
     background-color: white;
+    overflow: hidden;
+    width:100%;
 }
 
 .newsList_item h2 {
@@ -31,4 +33,15 @@
 .list-enter-active {
     opacity: 1;
     transform: translateX(0%);
+}
+
+.left-item {
+    float:left;
+    width:8%;
+}
+
+.right-item {
+    float: left;
+    width: 92%;
+    vertical-align: middle;
 }

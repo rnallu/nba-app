@@ -21,7 +21,6 @@ class NewsList extends React.Component {
     }
 
     request = (start,end) => {
-
         if(this.state.teams.length<1){
             axios.get(`${URL}/teams`)
         .then((response)=>{
@@ -38,20 +37,6 @@ class NewsList extends React.Component {
                 })
             });
     }
-
-    loadNews = () => {
-        return this.state.items.map((item, i)=> 
-            <CSSTransition 
-                key={i}
-                timeout={2000}
-                classNames="list"
-            >
-                <div className="newsList_item">
-                    <NewsTeam teams={this.state.teams} team={item.team} date={item.date}/>
-                  <Link to={`/articles/${item.id}`}>  <h2>{item.title}</h2> </Link></div>
-            </CSSTransition>
-             )
-    }
     
     loadMore = () => {
     this.request(this.state.end, this.state.end + 3)
@@ -59,12 +44,46 @@ class NewsList extends React.Component {
     
     }
 
+    renderSwitch = (type) => {
+        switch(type){
+            case 'card':
+            return this.state.items.map((item, i)=> 
+            <CSSTransition 
+                key={i}
+                timeout={2000}
+                classNames="list"
+            >
+                <div className="newsList_item">
+                    <div className="left-item">
+                        <img src={require(`../../../images/articles/${item.image}`)} width="90px"/>
+                    </div>
+                    <div className="right-item">
+                    <NewsTeam teams={this.state.teams} team={item.team} date={item.date}/>
+                    <Link to={`/articles/${item.id}`}>  <h2>{item.title}</h2> </Link>
+                    </div>
+                </div>
+            </CSSTransition>);
+                
+            default:
+                return this.state.items.map((item, i)=> 
+                <CSSTransition 
+                    key={i}
+                    timeout={2000}
+                    classNames="list"
+                >
+                    <div className="newsList_item">
+                        <NewsTeam teams={this.state.teams} team={item.team} date={item.date}/>
+                        <Link to={`/articles/${item.id}`}>  <h2>{item.title}</h2> </Link>
+                    </div>
+                </CSSTransition>);
+        }
+    }
+
     render () {  
-    
         return (
             <div>
                 <TransitionGroup component="h2">
-                {this.loadNews()}
+                {this.renderSwitch(this.props.type)}
                 </TransitionGroup>
                 <div className="loadmore" onClick={this.loadMore}>Load More</div>
             </div>

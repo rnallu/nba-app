@@ -9,7 +9,7 @@ const Home = () => {
         <div>
             <SimpleSlider/>
             <NewsList/>
-            <VideosList/>
+            <VideosList start={0} end={3} />
         </div>
         
     )

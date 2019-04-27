@@ -18,13 +18,13 @@ const SideNavItems = () => {
             cname:'sideItems',
             icon:'newspaper',
             text:'News',
-            link:'/'
+            link:'/news'
         },
         {
             cname:'sideItems',
             icon:'video',
             text:'Videos',
-            link:'/'
+            link:'/videos'
         }
     ]
 

@@ -11,8 +11,8 @@ class VideosList extends React.Component {
     state = {
         videos:[],
         teams:[],
-        start:0,
-        end:3
+        start:this.props.start,
+        end:this.props.end
     }
 
     componentDidMount(){
@@ -41,13 +41,16 @@ class VideosList extends React.Component {
     loadVideos = () => {
         return this.state.videos.map((item, i)=> 
                 <div className="video_item" key={i}>
-                      <NewsTeam teams={this.state.teams} team={item.team} date={item.date}/>
-                    <Link to={`/articles/${item.id}`}>
+                    <Link to={`/videos/${item.id}`}>
                     <div className="videoList_container">
                         <div className="image_titleDiv"><img src={require(`../../../images/videos/${item.image}`)} alt="" height="90px" width="110px"/>
                          <img className="image_play" src={require('../../../images/play.png')} alt="play"/>
                          </div> 
-                        <div className="video_titleDiv"><h2>{item.title}</h2> </div>
+                        
+                        <div className="video_titleDiv">
+                        <NewsTeam teams={this.state.teams} team={item.team} date={item.date}/>
+                        <h2>{item.title}</h2> 
+                        </div>
                     </div>
                     </Link>
                 </div>
@@ -63,7 +66,7 @@ class VideosList extends React.Component {
     render (){
         return (
             <div>
-                <h2 class="video_heading"><strong>NBA</strong> Videos</h2>
+                <h2 className="video_heading"><strong>NBA</strong> Videos</h2>
                 {this.loadVideos()}
                 <div className="load_videos" onClick={this.loadMore}>Load More Videos</div>
             </div>

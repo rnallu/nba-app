@@ -12,6 +12,7 @@
 .video_item {
     border-bottom:1px solid #232323;
     padding-top:10px;
+    background-color: white;
 }
 
 .load_videos {

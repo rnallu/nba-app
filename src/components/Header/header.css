@@ -3,6 +3,10 @@ header{
     color:white;
     display:flex;
     padding: 5px 0px 5px 0;
+    position:fixed;
+    width: 100%;
+    top:0;
+    z-index: 10;
 }
 
 .menu_item {

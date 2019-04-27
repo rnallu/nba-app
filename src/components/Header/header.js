@@ -1,5 +1,6 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
+import { Link } from 'react-router-dom';
 
 import SideNavigation from '../Header/SideNav/sideNav';
 
@@ -21,7 +22,7 @@ class Header extends React.Component {
                         onClick={()=> this.setState({showNav:true})}
                     />
                 </span>
-                <img src={require("../../images/nba_logo.png")} alt="nba_logo"/>
+                <Link to='/'><img src={require("../../images/nba_logo.png")} alt="nba_logo"/></Link>
                 
             </header>
         )
