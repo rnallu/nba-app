@@ -1,20 +1,20 @@
-header{
-    background-color: #232323;
-    color:white;
-    display:flex;
-    padding: 5px 0px 5px 0;
-    position:fixed;
-    width: 100%;
-    top:0;
-    z-index: 10;
+header {
+  background-color: #232323;
+  color: white;
+  display: flex;
+  padding: 5px 0px 5px 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 10;
 }
 
 .menu_item {
-    padding:5px 10px 5px 10px;
-    vertical-align: middle;
+  padding: 5px 10px 5px 10px;
+  vertical-align: middle;
 }
 
 header img {
-    width:auto;
-    height:25px;
+  width: auto;
+  height: 25px;
 }

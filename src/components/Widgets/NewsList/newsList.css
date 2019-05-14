@@ -1,47 +1,47 @@
 .newsList_item {
-    border-bottom: 1px solid grey;
-    padding:5px 8px 8px 5px;
-    background-color: white;
-    overflow: hidden;
-    width:100%;
+  border-bottom: 1px solid grey;
+  padding: 5px 8px 8px 5px;
+  background-color: white;
+  overflow: hidden;
+  width: 100%;
 }
 
 .newsList_item h2 {
-    font-size: 15px;
+  font-size: 15px;
 }
 
 .newsList_item a {
-    text-decoration: none;
-    color:#232323;
+  text-decoration: none;
+  color: #232323;
 }
 
 .loadmore {
-    padding: 5px 0 5px 0;
-    text-align: center;
-    background-color: blue;
-    color: white;
-    font-size: 18px;
-    cursor: pointer;
+  padding: 5px 0 5px 0;
+  text-align: center;
+  background-color: blue;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
 }
 
 .list-enter {
-    opacity:0;
-    transform: translateX(-100%);
-    transition: all 1s ease-in;
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: all 1s ease-in;
 }
 
 .list-enter-active {
-    opacity: 1;
-    transform: translateX(0%);
+  opacity: 1;
+  transform: translateX(0%);
 }
 
 .left-item {
-    float:left;
-    width:8%;
+  float: left;
+  width: 8%;
 }
 
 .right-item {
-    float: left;
-    width: 92%;
-    vertical-align: middle;
+  float: left;
+  width: 92%;
+  vertical-align: middle;
 }

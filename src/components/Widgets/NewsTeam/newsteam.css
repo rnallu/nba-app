@@ -1,16 +1,14 @@
 .news_team {
-    font-size: 12px;
+  font-size: 12px;
 }
 
 .team_name {
-    margin-right: 50px;
-    background-color: grey;
-    color:white;
-    margin-left: 10px;
+  margin-right: 50px;
+  background-color: grey;
+  color: white;
+  margin-left: 10px;
 }
 
 .team_date {
-    color:blue;
+  color: blue;
 }
-
-
