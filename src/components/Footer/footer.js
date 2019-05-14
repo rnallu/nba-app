@@ -1,16 +1,16 @@
-import React from 'react';
+import React from "react";
 
-import './footer.css';
+import "./footer.css";
 
 const Footer = () => {
-    return (
-        <footer>
-                <img src={require("../../images/nba_logo.png")} alt="nba_logo"/>
-            <span>
-                <p>@NBA 2019 All rights reserved.</p>
-            </span>
-        </footer>
-    )
-}
+  return (
+    <footer>
+      <img src={require("../../images/nba_logo.png")} alt="nba_logo" />
+      <span>
+        <p>@NBA 2019 All rights reserved.</p>
+      </span>
+    </footer>
+  );
+};
 
 export default Footer;

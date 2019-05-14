@@ -2,7 +2,7 @@ import React from 'react';
 
 
 const TeamInfo = (props) => {
-    console.log(props.team)
+    
     return (
         <div style={{display:'flex',alignItems:'center',height:'80px',borderBottom:'1px solid grey'}}>
             <div style={{width:'10%',float:'left'}}>

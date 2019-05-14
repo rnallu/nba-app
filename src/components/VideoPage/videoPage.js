@@ -1,7 +1,6 @@
 import React from 'react';
-import axios from 'axios';
 
-import { URL } from '../../config';
+import {firebaseDB,firebaseTeams, firebaseMapper} from '../../firebase';
 import TeamInfo from '../Widgets/TeamInfo/teamInfo';
 
 class VideoPage extends React.Component {
@@ -12,14 +11,26 @@ class VideoPage extends React.Component {
     }
 
     componentDidMount(){
-        axios.get(`${URL}/videos/${this.props.match.params.id}`)
-            .then(response => {
-                this.setState({items:this.state.items.concat(response.data)});
-                return axios.get(`${URL}/teams/${this.state.items[0].team}`);
+        firebaseDB.ref(`videos/${this.props.match.params.id}`).once('value')
+            .then((snapshot)=>{
+                const video=snapshot.val();
+                firebaseTeams.orderByChild("teamId").equalTo(video.team).once('value')
+                .then((snapshot)=>{
+                    const team=firebaseMapper(snapshot);
+                    this.setState({
+                        items:this.state.items.concat(video),
+                        teams:team
+                    })
+                })
             })
-            .then(response => {
-                this.setState({teams:response.data});
-            })
+        // axios.get(`${URL}/videos/${this.props.match.params.id}`)
+        //     .then(response => {
+        //         this.setState({items:this.state.items.concat(response.data)});
+        //         return axios.get(`${URL}/teams/${this.state.items[0].team}`);
+        //     })
+        //     .then(response => {
+        //         this.setState({teams:response.data});
+        //     })
     }
 
     render(){
@@ -28,7 +39,7 @@ class VideoPage extends React.Component {
         }
         return (
             <div>
-                <TeamInfo team={this.state.teams}/>
+                <TeamInfo team={this.state.teams[0]}/>
                 <div>
                     {this.state.items.map((item,i)=>{
                      return <div key={i}>

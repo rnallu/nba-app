@@ -1,12 +1,12 @@
 footer {
-    background-color: #232323;
-    color:grey;
-    display: flex;
-    align-items: center;
-    height:40px;
+  background-color: #232323;
+  color: grey;
+  display: flex;
+  align-items: center;
+  height: 40px;
 }
 
-footer img {    
-    height: 25px;
-    padding: 0 10px 0 10px;
+footer img {
+  height: 25px;
+  padding: 0 10px 0 10px;
 }

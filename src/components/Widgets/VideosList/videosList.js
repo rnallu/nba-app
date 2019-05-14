@@ -1,8 +1,7 @@
 import React from 'react';
-import axios from 'axios';
 import {Link} from 'react-router-dom';
 
-import {URL} from '../../../config';
+import { firebaseVideos, firebaseTeams, firebaseMapper } from '../../../firebase';
 import NewsTeam from '../NewsTeam/newsTeam';
 import './videosList.css';
 
@@ -22,20 +21,35 @@ class VideosList extends React.Component {
     request = (start,end) => {
 
         if(this.state.teams.length<1){
-            axios.get(`${URL}/teams`)
-        .then((response)=>{
+            firebaseTeams.once('value')
+            .then ((snapshot)=>{
+                const teams = firebaseMapper(snapshot);
+                this.setState({
+                    teams
+                })
+            })        
+        
+        //     axios.get(`${URL}/teams`)
+        // .then((response)=>{
+        //     this.setState({
+        //         teams:response.data
+        //     })
+        // })
+        }
+        firebaseVideos.orderByChild('id').startAt(start).endAt(end).once('value')
+        .then((snapshot)=>{
+            const data = firebaseMapper(snapshot);
             this.setState({
-                teams:response.data
+                videos:this.state.videos.concat(data)
             })
         })
-        }
-        
-        axios.get(`${URL}/videos?_start=${start}&_end=${end}`)
-            .then((response)=>{
-                this.setState({
-                    videos:this.state.videos.concat(response.data)
-                })
-            });
+
+        // axios.get(`${URL}/videos?_start=${start}&_end=${end}`)
+        //     .then((response)=>{
+        //         this.setState({
+        //             videos:this.state.videos.concat(response.data)
+        //         })
+        //     });
     }
 
     loadVideos = () => {

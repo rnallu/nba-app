@@ -1,9 +1,8 @@
 import React from 'react';
-import axios from 'axios';
 import {Link} from 'react-router-dom';
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
 
-import {URL} from '../../../config';
+import { firebaseArticles, firebaseTeams, firebaseMapper } from '../../../firebase';
 import './newsList.css';
 import NewsTeam from '../NewsTeam/newsTeam';
 
@@ -22,20 +21,35 @@ class NewsList extends React.Component {
 
     request = (start,end) => {
         if(this.state.teams.length<1){
-            axios.get(`${URL}/teams`)
-        .then((response)=>{
-            this.setState({
-                teams:response.data
+            firebaseTeams.once('value')
+            .then ((snapshot)=>{
+                const teams = firebaseMapper(snapshot);
+                this.setState({
+                    teams
+                })
             })
-        })
+        //     axios.get(`${URL}/teams`)
+        // .then((response)=>{
+        //     this.setState({
+        //         teams:response.data
+        //     })
+        // })
         }
         
-        axios.get(`${URL}/articles?_start=${start}&_end=${end}`)
-            .then((response)=>{
-                this.setState({
-                    items:this.state.items.concat(response.data)
-                })
-            });
+        firebaseArticles.orderByChild('id').startAt(start).endAt(end).once('value')
+        .then((snapshot)=>{
+            const data = firebaseMapper(snapshot);
+            this.setState({
+                items:this.state.items.concat(data)
+            })
+        })
+
+        // axios.get(`${URL}/articles?_start=${start}&_end=${end}`)
+        //     .then((response)=>{
+        //         this.setState({
+        //             items:this.state.items.concat(response.data)
+        //         })
+        //     });
     }
     
     loadMore = () => {
@@ -55,7 +69,7 @@ class NewsList extends React.Component {
             >
                 <div className="newsList_item">
                     <div className="left-item">
-                        <img src={require(`../../../images/articles/${item.image}`)} width="90px"/>
+                        <img src={require(`../../../images/articles/${item.image}`)} width="90px" alt=""/>
                     </div>
                     <div className="right-item">
                     <NewsTeam teams={this.state.teams} team={item.team} date={item.date}/>

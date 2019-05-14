@@ -1,10 +1,8 @@
 import React from 'react';
 import Slider from 'react-slick';
-import axios from 'axios';
 import {Link} from 'react-router-dom';
 
-import {URL} from '../../../config';
-
+import { firebaseArticles,firebaseMapper} from '../../../firebase';
 import './slider.css';
 
 class SimpleSlider extends React.Component {
@@ -13,15 +11,18 @@ class SimpleSlider extends React.Component {
     }
     
     componentWillMount(){
-        axios.get(`${URL}/articles?_start=0&_end=3`)
-            .then((response)=>{
-                this.setState({
-                    items:response.data
-                })
-            });
+        firebaseArticles.limitToFirst(3).once('value')
+            .then ((snapshot)=>{
+                const items = firebaseMapper(snapshot);
+            this.setState({
+                items
+            })
+        })
+            
     }
     
     render() {
+        
            const settings = {
                 dots:true,
                 arrows:false,
