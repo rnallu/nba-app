@@ -1,0 +1,36 @@
+.signin-page {
+  height: 85vh;
+  text-align: center;
+}
+
+label {
+  width: 45vw;
+  text-align: right;
+  padding-right: 10px;
+  float: left;
+}
+
+input {
+  margin-bottom: 10px;
+  display: block;
+}
+
+button {
+  text-align: center;
+}
+
+.errorMsg {
+  color: red;
+  font-size: 12px;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  display: block;
+  margin-left: 50px;
+}
+
+.signin-page button {
+  background-color: blue;
+  color: white;
+  padding: 5px 10px 5px 10px;
+  margin-right: 20px;
+}

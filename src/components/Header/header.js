@@ -13,6 +13,7 @@ class Header extends React.Component {
     return (
       <header>
         <SideNavigation
+          {...this.props}
           showNav={this.state.showNav}
           onHideNav={() => this.setState({ showNav: false })}
         />

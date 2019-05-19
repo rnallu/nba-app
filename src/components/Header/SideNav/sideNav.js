@@ -13,7 +13,7 @@ const SideNavigation = props => {
         maxWidth: "224px"
       }}
     >
-      <SideNavItems />
+      <SideNavItems {...props} />
     </SideNav>
   );
 };
