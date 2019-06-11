@@ -100,12 +100,7 @@ const SideNavItems = props => {
     });
   };
 
-  return (
-    <div>
-      {console.log(props.user)}
-      {showItems()}
-    </div>
-  );
+  return <div>{showItems()}</div>;
 };
 
 export default withRouter(SideNavItems);

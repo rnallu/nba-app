@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import {
+  firebase,
   firebaseArticles,
   firebaseTeams,
   firebaseMapper
@@ -14,8 +15,8 @@ class NewsList extends React.Component {
   state = {
     items: [],
     teams: [],
-    start: 3,
-    end: 6
+    start: 0,
+    end: 3
   };
 
   componentDidMount() {
@@ -44,9 +45,20 @@ class NewsList extends React.Component {
       .endAt(end)
       .once("value")
       .then(snapshot => {
-        const data = firebaseMapper(snapshot);
+        const items = firebaseMapper(snapshot);
+
+        items.forEach((item, i) => {
+          firebase
+            .storage()
+            .ref("images")
+            .child(item.image)
+            .getDownloadURL()
+            .then(url => {
+              items[i].image = url;
+            });
+        });
         this.setState({
-          items: this.state.items.concat(data)
+          items: this.state.items.concat(items)
         });
       });
 
@@ -59,7 +71,7 @@ class NewsList extends React.Component {
   };
 
   loadMore = () => {
-    this.request(this.state.end, this.state.end + 3);
+    this.request(this.state.end + 1, this.state.end + 3);
     this.setState({ start: this.state.end, end: this.state.end + 3 });
   };
 
@@ -70,11 +82,7 @@ class NewsList extends React.Component {
           <CSSTransition key={i} timeout={2000} classNames="list">
             <div className="newsList_item">
               <div className="left-item">
-                <img
-                  src={require(`../../../images/articles/${item.image}`)}
-                  width="90px"
-                  alt=""
-                />
+                <img src={`${item.image}`} width="90px" alt="" />
               </div>
               <div className="right-item">
                 <NewsTeam

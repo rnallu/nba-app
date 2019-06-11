@@ -91,7 +91,7 @@ class VideosList extends React.Component {
   };
 
   loadMore = () => {
-    this.request(this.state.end, this.state.end + 3);
+    this.request(this.state.end + 1, this.state.end + 3);
     this.setState({ start: this.state.end, end: this.state.end + 3 });
   };
 

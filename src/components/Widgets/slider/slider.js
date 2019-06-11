@@ -2,7 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
 
-import { firebaseArticles, firebaseMapper } from "../../../firebase";
+import { firebase, firebaseArticles, firebaseMapper } from "../../../firebase";
 import "./slider.css";
 
 class SimpleSlider extends React.Component {
@@ -16,8 +16,20 @@ class SimpleSlider extends React.Component {
       .once("value")
       .then(snapshot => {
         const items = firebaseMapper(snapshot);
-        this.setState({
-          items
+
+        items.forEach((item, i) => {
+          firebase
+            .storage()
+            .ref("images")
+            .child(item.image)
+            .getDownloadURL()
+            .then(url => {
+              items[i].image = url;
+
+              this.setState({
+                items
+              });
+            });
         });
       });
   }
@@ -37,12 +49,7 @@ class SimpleSlider extends React.Component {
       <Slider {...settings}>
         {this.state.items.map((item, i) => (
           <div key={i} className="container">
-            <img
-              src={require(`../../../images/articles/${item.image}`)}
-              alt=""
-              width="100%"
-              height="580px"
-            />
+            <img src={`${item.image}`} alt="" />
             <div className="imgTitle">
               <Link to={`/articles/${item.id}`}>{item.title}</Link>
             </div>

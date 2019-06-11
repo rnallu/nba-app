@@ -8,6 +8,7 @@ import VideoPage from "./components/VideoPage/videoPage";
 import NewsView from "./components/NewsView/newsView";
 import VideoView from "./components/VideoView/videoView";
 import SignIn from "./components/SignIn/signIn";
+import Dashboard from "./components/Dashboard/dashboard";
 
 class Routes extends React.Component {
   render() {
@@ -20,6 +21,7 @@ class Routes extends React.Component {
           <Route path="/news" exact component={NewsView} />
           <Route path="/videos" exact component={VideoView} />
           <Route path="/signin" exact component={SignIn} />
+          <Route path="/dashboard" exact component={Dashboard} />
         </Switch>
       </Layout>
     );

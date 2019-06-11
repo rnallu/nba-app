@@ -21,6 +21,22 @@ const RenderField = props => {
             {showValidation(data)}
           </div>
         );
+      case "select":
+        return (
+          <select
+            value={data.value}
+            name={data.config.name}
+            onBlur={event => renderValue(event, key, true)}
+            onChange={event => renderValue(event, key, false)}
+            key={data.config.name}
+          >
+            {data.config.options.map((item, i) => (
+              <option key={i} value={item.id}>
+                {item.name}
+              </option>
+            ))}
+          </select>
+        );
       default:
         return null;
     }

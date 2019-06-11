@@ -1,13 +1,19 @@
 import React from "react";
 import moment from "moment";
 
-import { firebaseDB, firebaseTeams, firebaseMapper } from "../../firebase";
+import {
+  firebase,
+  firebaseDB,
+  firebaseTeams,
+  firebaseMapper
+} from "../../firebase";
 import TeamInfo from "../Widgets/TeamInfo/teamInfo";
 
 class ArticlePage extends React.Component {
   state = {
     items: [],
-    teams: ""
+    teams: "",
+    imageURL: ""
   };
 
   componentWillMount() {
@@ -23,13 +29,23 @@ class ArticlePage extends React.Component {
           .once("value")
           .then(snapshot => {
             const team = firebaseMapper(snapshot);
-            this.setState({
-              items: this.state.items.concat(article),
-              teams: team
-            });
+            let image = "";
+
+            firebase
+              .storage()
+              .ref("images")
+              .child(article.image)
+              .getDownloadURL()
+              .then(url => {
+                image = url;
+                this.setState({
+                  items: this.state.items.concat(article),
+                  teams: team,
+                  imageURL: image
+                });
+              });
           });
       });
-
     // axios.get(`${URL}/articles/${this.props.match.params.id}`)
     //     .then(response => {
     //         this.setState({
@@ -72,12 +88,16 @@ class ArticlePage extends React.Component {
               <div key={i}>
                 <h3>{item.title}</h3>
                 <img
-                  src={require(`../../images/articles/${item.image}`)}
+                  src={`${this.state.imageURL}`}
                   alt=""
-                  width="100%"
+                  width="auto"
                   height="480px"
                 />
-                <p>{item.body}</p>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: item.body
+                  }}
+                />
               </div>
             );
           })}
