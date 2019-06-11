@@ -80,11 +80,14 @@ const SideNavItems = props => {
                 .signOut()
                 .then(() => {
                   props.history.push("/");
+                  alert("Logged out successfully!!!");
                 });
             }}
           >
-            <FontAwesome name={item.icon} />
-            {item.text}
+            <Link to="/">
+              <FontAwesome name={item.icon} />
+              {item.text}
+            </Link>
           </div>
         );
       } else {

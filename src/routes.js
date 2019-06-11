@@ -20,8 +20,16 @@ class Routes extends React.Component {
           <Route path="/videos/:id" exact component={VideoPage} />
           <Route path="/news" exact component={NewsView} />
           <Route path="/videos" exact component={VideoView} />
-          <Route path="/signin" exact component={SignIn} />
-          <Route path="/dashboard" exact component={Dashboard} />
+          <Route
+            path="/signin"
+            exact
+            component={this.props.user ? Dashboard : SignIn}
+          />
+          <Route
+            path="/dashboard"
+            exact
+            component={this.props.user ? Dashboard : SignIn}
+          />
         </Switch>
       </Layout>
     );
